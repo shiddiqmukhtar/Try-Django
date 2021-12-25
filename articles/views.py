@@ -27,13 +27,21 @@ def article_search_view(request):
     
 def article_create_view(request):
     #print(request.POST)
+    context = {}
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
         print(title, content)
-        Article.objects.create(title=title, content=content)
-        return redirect('/')
-    context = {}
+        
+        article_object = Article.objects.create(title=title, content=content)
+        #context['object'] = article_object
+        #context['created'] = True
+        context = {
+            'object': article_object,
+            'created': True,
+        }
+        #return redirect('/')
+        
     
     return render(request, 'articles/create.html', context)
     

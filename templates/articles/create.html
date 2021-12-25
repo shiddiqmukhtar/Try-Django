@@ -3,22 +3,26 @@
 {% block contents %}
     <ul>
         <li>
-            <a class="text-info" style="text-decoration:none" href="/" title="">batal..</a>
+            <a class="text-info" style="text-decoration:none" href="/" title="">home</a>
         </li>
     </ul>
+    {% if not created %}
+        <div style="margin-top:30px">
+            <form action="." method="POST">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Title.." />
+                <div style="margin-top:10px">
+                    <textarea name="content" placeholder="Content.."></textarea>
+                </div>
+                <div style="margin-top:10px">
+                    <button type="submit" >Create article</button>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <p>You article was created!</p>
+        <a class="text-info" style="text-decoration:none" href="/articles/{{object.id}}" title="">.{{object.title}} - {{object.content}}</a>
     
-    <div style="margin-top:30px">
-    <form action="." method="POST">
-        {% csrf_token %}
-            <input type="text" name="title" placeholder="Title.." />
-            <div style="margin-top:10px">
-                <textarea name="content" placeholder="Content.."></textarea>
-            </div>
-            <div style="margin-top:10px">
-                <button type="submit" >Create article</button>
-            </div>
-        </form>
-    </div>
-
+    {% endif%}
 
 {% endblock contents %}

@@ -15,7 +15,7 @@ def home_view(request, *args, **kwargs):
     Return HTML as a response (we pick to return the response)
     """
     
-    random_id = random.randint(1, 5) # pseudo random
+    random_id = random.randint(1, 12) # pseudo random
     
     # from the database
     article_obj = Article.objects.get(id=random_id)
