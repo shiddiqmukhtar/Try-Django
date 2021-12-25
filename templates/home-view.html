@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<br>
+<ul><li><a class="text-info" style="text-decoration:none" href="/articles/create/" title="">Create article</a></li></ul>
+<h1>{{title}} - with (id: #{{id}})!</h1>
+<p>{{content}}</p>
+<ul style="color:red">
+        {% for list in object_list %}
+            {% if list.title %}
+                <li><a class="text-info" style="text-decoration:none" href="/articles/{{list.id}}/" title="">{{list.title}} - {{list.content}}</a></li>
+            {% else %}
+                <li><a class="text-info" style="text-decoration:none" href="/articles/{{list.id}}/" title="">Title ""- Content ""</a></li>
+            {% endif %}
+        {% endfor%}
+    </ul>
+
+{% endblock contents %}
